@@ -41,7 +41,7 @@ export namespace Brutal {
      */
     export function barrage<T, V extends BrutalState<T>>(ctx: V, offset: number, cb: BrutalAction<V>): void {
 
-        if (ctx.stopped) {
+        if (!ctx || ctx.stopped) {
             return;
         }
 
