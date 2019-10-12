@@ -1,4 +1,5 @@
 import { toString } from 'lodash';
+
 import { BrutalState, Brutal } from './Brutal';
 
 /**
@@ -51,7 +52,7 @@ export class BrutalContext<T> implements BrutalState<T> {
     }
 
     public execute(offset: number = 0): void {
-        Brutal.barrage(this, offset, ctx => {
+        Brutal.barrage(this, Math.max(offset, 0), ctx => {
             ctx.iterationsInternal++;
             ctx.stopped = ctx.test(ctx.output);
         });
