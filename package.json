@@ -4,7 +4,8 @@
   "description": "a plain-jane brute-force implementation for cyclying over all combinations in the ASCII set",
   "main": "src/Brutus.ts",
   "scripts": {
-    "start": "ts-node ./src/Brutus.ts"
+    "start": "ts-node ./src/Brutus.ts",
+    "combos": "ts-node ./src/BrutusCombinations.ts"
   },
   "author": "",
   "license": "ISC",

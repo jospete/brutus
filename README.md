@@ -14,3 +14,6 @@ npm run start -- --numeric --target "12345"
 npm run start -- --target "mySecretString"
 ```
 
+```
+npm run combos -- --char-set ABC --output-size 2
+```

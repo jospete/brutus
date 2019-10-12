@@ -43,18 +43,45 @@ export namespace Brutal {
      */
     export function barrage<T, V extends BrutalState<T>>(ctx: V, offset: number, cb: BrutalAction<V>): void {
 
-        if (offset < 0 || !ctx || ctx.stopped) {
+        if (!ctx || offset < 0 || !isFunction(cb)) {
+            console.warn('barrage() will not execute (invalid arguments)');
+            return;
+        }
+
+        barrageInternal(ctx, offset, cb);
+    }
+
+    /**
+     * For each offset position between 0 and the output size, 
+     * loop through all input elements and place the element at the cursor on the given offset.
+     * This process continues until the offset meets the target output size.
+     * 
+     * Produced elements of [A,B,C] with size 2 would be:
+     * 
+     * ["A","A"]
+     * ["A","B"]
+     * ["A","C"]
+     * ["B","A"]
+     * ["B","B"]
+     * ["B","C"]
+     * ["C","A"]
+     * ["C","B"]
+     * ["C","C"]
+     */
+    function barrageInternal<T, V extends BrutalState<T>>(ctx: V, offset: number, cb: BrutalAction<V>): void {
+
+        if (ctx.stopped) {
             return;
         }
 
         if (offset >= ctx.outputSize) {
-            if (isFunction(cb)) cb(ctx);
+            cb(ctx);
             return;
         }
 
         for (let i = 0; !ctx.stopped && i < ctx.inputSize; i++) {
             ctx.output[offset] = ctx.input[i];
-            barrage(ctx, offset + 1, cb);
+            barrageInternal(ctx, offset + 1, cb);
         }
     }
 }
