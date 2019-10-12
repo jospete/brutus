@@ -1,3 +1,5 @@
+import { isFunction } from 'lodash';
+
 /**
  * Callback type for reporting new combination states
  */
@@ -46,7 +48,7 @@ export namespace Brutal {
         }
 
         if (offset >= ctx.outputSize) {
-            cb(ctx);
+            if (isFunction(cb)) cb(ctx);
             return;
         }
 
