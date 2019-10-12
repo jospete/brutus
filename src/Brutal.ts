@@ -1,10 +1,10 @@
 /**
- * Callback used to report new combinations for a target state
+ * Callback type for reporting new combination states
  */
 export type BrutalAction<T> = (value: T) => void;
 
 /**
- * Interface for the state used by combo()
+ * Interface for the state used by barrage()
  */
 export interface BrutalState<T> {
     readonly input: T[];
@@ -33,9 +33,10 @@ export module Brutal {
 
     /**
      * Recursively loop over all indicies until either all combinations have 
-     * been found, or 'targedFound' becomes true.
+     * been found, or 'stopped' becomes true.
      * 
-     * Given the numeric set 0,1,2,3,4,5,6,7,8,9 and an output size of 4,
+     * For Example,
+     * Given the numeric set [0,1,2,3,4,5,6,7,8,9], an output size of 4, and an offset of 0,
      * this will produce all values between 0000-9999
      */
     export function barrage<T, V extends BrutalState<T>>(ctx: V, offset: number, cb: BrutalAction<V>): void {
