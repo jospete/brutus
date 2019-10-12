@@ -19,6 +19,10 @@ export class BrutalContext<T> implements BrutalState<T> {
 
     constructor(public readonly input: T[], public outputSize: number = 10) {
 
+        if (!this.input || this.input.length <= 0) {
+            throw new TypeError('BrutalContext input set must be well defined (got ' + this.input + ')');
+        }
+
         this.inputSize = this.input.length;
 
         this.output = [];
