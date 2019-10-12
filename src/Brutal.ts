@@ -18,7 +18,7 @@ export interface BrutalState<T> {
 /**
  * AKA Brutus-Util
  */
-export module Brutal {
+export namespace Brutal {
 
     // Base sets
     export const numerics = '0123456789';
