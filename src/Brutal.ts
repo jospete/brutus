@@ -1,4 +1,4 @@
-import { isFunction } from 'lodash';
+import { isInteger, isFunction } from 'lodash';
 
 /**
  * Callback type for reporting new combination states
@@ -43,7 +43,7 @@ export namespace Brutal {
      */
     export function barrage<T, V extends BrutalState<T>>(ctx: V, offset: number, cb: BrutalAction<V>): void {
 
-        if (!ctx || offset < 0 || !isFunction(cb)) {
+        if (!ctx || !isInteger(offset) || offset < 0 || !isFunction(cb)) {
             console.warn('barrage() will not execute (invalid arguments)');
             return;
         }
