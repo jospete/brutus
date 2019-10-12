@@ -10,7 +10,7 @@ const outputSize = Math.max(toInteger(argv.outputSize), 1);
 const ctx = BrutalContext.fromCharacterSet(charSet, outputSize);
 
 ctx.test = chars => {
-    console.log(JSON.stringify(chars));
+    console.log(chars.join(''));
     return false;
 };
 
