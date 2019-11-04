@@ -17,3 +17,8 @@ npm run start -- --target "mySecretString"
 ```
 npm run combos -- --char-set ABC --output-size 2
 ```
+
+```
+# outputs values 0000-9999
+npm run combos -- --char-set 0123456789 --output-size 4
+```
