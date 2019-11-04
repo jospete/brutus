@@ -8,8 +8,9 @@ console.log('**** Brutus Brute-Force ****');
 
 const inputTarget = toString(argv.target);
 const headStart = toInteger(argv.headStart);
+const customCharSet = toString(argv.charSet);
 
-const charSet = argv.numeric ? Brutal.numerics : Brutal.characterSet;
+const charSet = customCharSet ? customCharSet : argv.numeric ? Brutal.numerics : Brutal.characterSet;
 const ctx = BrutalContext.fromCharacterSet(charSet, inputTarget.length);
 
 ctx.output = inputTarget.substr(0, headStart).split('');
